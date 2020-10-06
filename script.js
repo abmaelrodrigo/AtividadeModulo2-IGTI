@@ -42,6 +42,7 @@ function saveReadFiles() {
   console.log(theSmallestNames);
   
   console.log(theBiggestCityOfAll(states,cities));
+  console.log(theSmallestCityOfAll(states,cities));
 }
 
 function filterCityByState(stateID, cities) {
@@ -109,6 +110,12 @@ function filterTheSmallestCitiesNames(states){
 
 function theBiggestCityOfAll(states, cities){
     const citysName = cities.map(city =>({Nome: city.Nome, Estado: city.Estado})).sort(sortByLengthDesc)[0];
+    const uf = states.filter(state => state.ID === citysName.Estado)[0];
+    return `${citysName.Nome} - ${uf.Nome}`;
+}
+
+function theSmallestCityOfAll(states, cities){
+    const citysName = cities.map(city =>({Nome: city.Nome, Estado: city.Estado})).sort(sortByLengthAsc)[0];
     const uf = states.filter(state => state.ID === citysName.Estado)[0];
     return `${citysName.Nome} - ${uf.Nome}`;
 }
